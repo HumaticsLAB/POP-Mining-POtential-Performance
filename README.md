@@ -1,7 +1,7 @@
 
 # POP: Mining POtential Performance of new fashion products via webly cross-modal query expansion
 
-The official pytorch implementation of [GTM](https://github.com/HumaticsLAB/GTM-Transformer) additionals discussed in [POP: Mining POtential Performance of new fashion products via webly cross-modal query expansion](.)
+The official pytorch implementation of [GTM](https://github.com/HumaticsLAB/GTM-Transformer) additionals discussed in [POP: Mining POtential Performance of new fashion products via webly cross-modal query expansion](#)
 paper.
 
 Accepted as poster at the European Conference on Computer Vision @ ECCV2022 @ Tel-Aviv
