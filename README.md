@@ -65,7 +65,7 @@ To train the model of GTM-Transformer with POP signals please use the following 
 python train_POP.py --data_folder dataset
 ```
 ## Inference
-To evaluate the model of GTM-Transformer with POP signals please use the following script .Please check the arguments inside the script before launch.
+To evaluate the model of GTM-Transformer with POP signals please use the following script. Please check the arguments inside the script before launch.
 
 ```bash
 python forecast_POP.py --data_folder dataset --ckpt_path ckpt/model.pth
