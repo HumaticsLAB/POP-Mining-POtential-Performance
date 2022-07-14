@@ -68,7 +68,7 @@ python train_POP.py --data_folder dataset
 To evaluate the model of GTM-Transformer with POP signals please use the following script .Please check the arguments inside the script before launch.
 
 ```bash
-python forecast:_POP.py --data_folder dataset --ckpt_path ckpt/model.pth
+python forecast_POP.py --data_folder dataset --ckpt_path ckpt/model.pth
 ```
 
 ## Citation
