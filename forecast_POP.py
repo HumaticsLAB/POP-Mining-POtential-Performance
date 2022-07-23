@@ -42,11 +42,11 @@ def run(args):
     col_dict = torch.load(Path(args.data_folder + 'color_labels.pt'))
     fab_dict = torch.load(Path(args.data_folder + 'fabric_labels.pt'))
 
-    pvt_feats = torch.load(args.features_pvt)
-    gog_feats = torch.load(args.features_google)
+    pop_signal = torch.load(args.pop_path)
 
-    test_loader = POPDataset(test_df, pvt_feats, gog_feats, cat_dict, col_dict, \
-            fab_dict, num_images=args.num_images).get_loader(batch_size=1, train=False)
+    test_loader = POPDataset(test_df, pop_signal, cat_dict, col_dict, \
+            tex_dict).get_loader(batch_size=1, train=False)
+
 
     model_savename = f'{args.wandb_run}_{args.output_dim}'
     
@@ -102,8 +102,7 @@ if __name__ == '__main__':
 
     # General arguments
     parser.add_argument('--data_folder', type=str, default='dataset/')
-    parser.add_argument('--features_pvt', type=str, default='signals/pvt.pt')
-    parser.add_argument('--features_google', type=str, default="signals/google.pt")
+    parser.add_argument('--pop_path', type=str, default='signals/pop.pt')
     
     parser.add_argument('--ckpt_path', type=str, default='log/path-to-model.ckpt')
     parser.add_argument('--gpu_num', type=int, default=0)
@@ -113,7 +112,6 @@ if __name__ == '__main__':
     parser.add_argument('--use_trends', type=int, default=1)
     parser.add_argument('--num_trends', type=int, default=1)
     parser.add_argument('--trend_len', type=int, default=52)
-    parser.add_argument('--num_images', type=int, default=52)
     parser.add_argument('--decoder_input_type', type=int, default=3)
     parser.add_argument('--embedding_dim', type=int, default=32)
     parser.add_argument('--hidden_dim', type=int, default=64)
