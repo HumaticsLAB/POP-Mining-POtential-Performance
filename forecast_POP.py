@@ -104,7 +104,7 @@ if __name__ == '__main__':
     parser.add_argument('--data_folder', type=str, default='dataset/')
     parser.add_argument('--pop_path', type=str, default='signals/pop.pt')
     
-    parser.add_argument('--ckpt_path', type=str, default='log/path-to-model.ckpt')
+    parser.add_argument('--ckpt_path', type=str, default='ckpt/path-to-model.ckpt')
     parser.add_argument('--gpu_num', type=int, default=0)
     parser.add_argument('--seed', type=int, default=21)
 
