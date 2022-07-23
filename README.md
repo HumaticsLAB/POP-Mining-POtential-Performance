@@ -28,21 +28,11 @@ pip install pytorch-lightning
 export INSTALL_DIR=$PWD
 
 cd $INSTALL_DIR
-git clone https://github.com/HumaticsLAB/GTM-Transformer.git
-cd GTM-Transformer
+git clone https://github.com/HumaticsLAB/POP-Mining-POtential-Performance.git
+cd POP-Mining-POtential-Performance
 mkdir ckpt
 mkdir dataset
 mkdir results
-
-cd ..
-git clone https://github.com/HumaticsLAB/POP-Mining-POtential-Performance.git
-cd POP-Mining-POtential-Performance
-
-cp -r utils ../GTM-Transformer/.
-cp -r models ../GTM-Transformer/.
-cp -r signals/* ../GTM-Transformer/dataset/.
-cp train_POP.py ../GTM-Transformer/.
-cp forecast_POP.py ../GTM-Transformer/.
 
 unset INSTALL_DIR
 ```
