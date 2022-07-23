@@ -60,7 +60,6 @@ def run(args):
             cat_dict=cat_dict,
             col_dict=col_dict,
             tex_dict=tex_dict,
-            shape_dict=shape_dict,
             trend_len=args.trend_len, 
             num_trends= args.num_trends,
             decoder_input_type=args.decoder_input_type,
@@ -115,8 +114,7 @@ if __name__ == '__main__':
     parser.add_argument('--num_trends', type=int, default=1)
     parser.add_argument('--trend_len', type=int, default=52)
     parser.add_argument('--num_images', type=int, default=52)
-    parser.add_argument('--use_img', type=int, default=1)
-    parser.add_argument('--use_text', type=int, default=1)
+    parser.add_argument('--decoder_input_type', type=int, default=3)
     parser.add_argument('--embedding_dim', type=int, default=32)
     parser.add_argument('--hidden_dim', type=int, default=64)
     parser.add_argument('--output_dim', type=int, default=12)
