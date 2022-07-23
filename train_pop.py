@@ -8,8 +8,7 @@ from pytorch_lightning import loggers as pl_loggers
 from pathlib import Path
 from datetime import datetime
 from models.GTM import GTM
-from models.FCN import FCN
-from utils.data_multitrends import ZeroShotDataset
+from utils.data import POPDataset
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
@@ -31,9 +30,9 @@ def run(args):
     pvt_feats = torch.load(args.features_pvt)
     gog_feats = torch.load(args.features_google)
 
-    train_loader = data_images.ZeroShotDataset(train_df, pvt_feats, gog_feats, cat_dict, col_dict,  \
+    train_loader = POPDataset(train_df, pvt_feats, gog_feats, cat_dict, col_dict,  \
             fab_dict, num_images=args.num_images).get_loader(batch_size=args.batch_size, train=True)
-    test_loader = data_images.ZeroShotDataset(test_df, pvt_feats, gog_feats, cat_dict, col_dict, \
+    test_loader = POPDataset(test_df, pvt_feats, gog_feats, cat_dict, col_dict, \
             fab_dict, num_images=args.num_images).get_loader(batch_size=1, train=False)
     
     
@@ -103,11 +102,10 @@ if __name__ == '__main__':
 
     # Model specific arguments
     parser.add_argument('--use_trends', type=int, default=1)
+    parser.add_argument('--num_trends', type=int, default=1)
     parser.add_argument('--trend_len', type=int, default=52)
     parser.add_argument('--num_images', type=int, default=52)
-    parser.add_argument('--use_img', type=int, default=1)
-    parser.add_argument('--use_text', type=int, default=1)
-    parser.add_argument('--num_trends', type=int, default=3)
+    parser.add_argument('--decoder_input_type', type=int, default=3)
     parser.add_argument('--batch_size', type=int, default=128)
     parser.add_argument('--embedding_dim', type=int, default=32)
     parser.add_argument('--hidden_dim', type=int, default=64)
