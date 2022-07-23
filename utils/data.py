@@ -8,15 +8,14 @@ from tqdm import tqdm
 from torchvision.transforms import Resize, ToTensor, Normalize, Compose
 from sklearn.preprocessing import MinMaxScaler
 
-class ZeroShotDataset():
-    def __init__(self, data_df, gtrends, cat_dict, col_dict, tex_dict, shape_dict):
+class POPDataset():
+    def __init__(self, data_df, img_root, pop_signal, cat_dict, col_dict, fab_dict):
         self.data_df = data_df
-        self.gtrends = gtrends
+        self.pop_signal = pop_signal
         self.cat_dict = cat_dict
         self.col_dict = col_dict
-        self.tex_dict = tex_dict
-        self.shape_dict = shape_dict
-        self.img_root = '/media/data/cjoppi/ICCV2021/dataset/images_clean/'
+        self.fab_dict = fab_dict
+        self.img_root = img_root
 
     def __len__(self):
         return len(self.data_df)
@@ -29,31 +28,24 @@ class ZeroShotDataset():
 
         # Get the Gtrends time series associated with each product
         # Read the images (extracted image features) as well
-        gtrends, image_features = [], []
+        pop_signals, image_features = [], []
         img_transforms = Compose([Resize((256, 256)), ToTensor(), Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
         for (idx, row) in tqdm(data.iterrows(), total=len(data), ascii=True):
-            cat, col, tex, fiq_attr, start_date, img_path = row['category'], row['exact_color'], row['texture'], row['finegrained_attr'],\
-                row['release_date'], row['image_path']
+            
+            start_date, img_path =  row['release_date'], row['image_path']
 
-            # Get the gtrend signal from the previous year (52 weeks) of the release date
-            len_gtrend = 52
-
-            vis_trend = self.gtrends[row['external_code']].unsqueeze(0)
-
-            # vis_trend = MinMaxScaler().fit_transform(vis_trend[:len_gtrend])
-        
-            # multitrends = np.vstack([mixed_gtrend, tex_gtrend, shape_gtrend, singles_gtrends[torch.randperm(singles_gtrends.shape[0]),:]])
-
+            pop_signal_start = start_date - pd.DateOffset(weeks=52)
+            pop_signal = self.pop_signal[row['external_code']][-52:].values[:self.trend_len].unsqueeze(0)
 
             # Read images
             img = Image.open(os.path.join(self.img_root, img_path)).convert('RGB')
 
             # Append them to the lists
-            gtrends.append(vis_trend)
+            pop_signals.append(pop_signal)
             image_features.append(img_transforms(img))
 
         # Convert to numpy arrays
-        gtrends = torch.stack(gtrends)
+        pop_signals = torch.stack(pop_signals)
 
         # Remove non-numerical information
         data.drop(['external_code', 'season', 'release_date', 'image_path'], axis=1, inplace=True)
@@ -61,17 +53,16 @@ class ZeroShotDataset():
         # Create tensors for each part of the input/output
         item_sales, temporal_features = torch.FloatTensor(data.iloc[:, :12].values), torch.FloatTensor(
             data.iloc[:, 14:18].values)
-        categories, colors, textures, shape = [self.cat_dict[val] for val in data.iloc[:].category], \
-                                       [self.col_dict[val] for val in data.iloc[:].exact_color], \
-                                       [self.tex_dict[val] for val in data.iloc[:].texture], \
-                                       [self.shape_dict[val] for val in data.iloc[:].finegrained_attr]
+        categories, colors, fabrics = [self.cat_dict[val] for val in data.iloc[:].category], \
+                                       [self.col_dict[val] for val in data.iloc[:].color], \
+                                       [self.fab_dict[val] for val in data.iloc[:].fabric]
 
         
-        categories, colors, textures, shape = torch.LongTensor(categories), torch.LongTensor(colors), torch.LongTensor(textures), torch.LongTensor(shape)
-        gtrends = torch.FloatTensor(gtrends)
+        categories, colors, textures = torch.LongTensor(categories), torch.LongTensor(colors), torch.LongTensor(textures)
+        pop_signals = torch.FloatTensor(pop_signals)
         images = torch.stack(image_features)
 
-        return TensorDataset(item_sales, torch.vstack([categories, textures, colors ]).T, temporal_features, gtrends, images)
+        return TensorDataset(item_sales, torch.vstack([categories, textures, colors ]).T, temporal_features, pop_signals, images)
 
     def get_loader(self, batch_size, train=True):
         print('Starting dataset creation process...')
