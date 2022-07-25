@@ -9,12 +9,13 @@ from torchvision.transforms import Resize, ToTensor, Normalize, Compose
 from sklearn.preprocessing import MinMaxScaler
 
 class POPDataset():
-    def __init__(self, data_df, img_root, pop_signal, cat_dict, col_dict, fab_dict):
+    def __init__(self, data_df, img_root, pop_signal, cat_dict, col_dict, fab_dict, trend_len):
         self.data_df = data_df
         self.pop_signal = pop_signal
         self.cat_dict = cat_dict
         self.col_dict = col_dict
         self.fab_dict = fab_dict
+        self.trend_len = trend_len
         self.img_root = img_root
 
     def __len__(self):
