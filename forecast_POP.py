@@ -122,6 +122,7 @@ if __name__ == '__main__':
     parser.add_argument('--num_attn_heads', type=int, default=4)
     parser.add_argument('--num_hidden_layers', type=int, default=1)
 
+    parser.add_argument('--wandb_run', type=str, default='Run1')
 
     args = parser.parse_args()
     run(args)
