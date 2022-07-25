@@ -59,7 +59,7 @@ def run(args):
     # Define model saving procedure
     dt_string = datetime.now().strftime("%d-%m-%Y-%H-%M-%S")
 
-    model_savename = ì'GTM_' + args.wandb_run
+    model_savename = 'GTM_' + args.wandb_run
 
     checkpoint_callback = pl.callbacks.ModelCheckpoint(
         dirpath=args.ckpt_dir + '/'+args.model_type,
