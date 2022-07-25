@@ -62,7 +62,7 @@ def run(args):
     model_savename = 'GTM_' + args.wandb_run
 
     checkpoint_callback = pl.callbacks.ModelCheckpoint(
-        dirpath=args.ckpt_dir + '/'+args.model_type,
+        dirpath=args.ckpt_dir,
         filename=model_savename+'---{epoch}---'+dt_string,
         monitor='val_mae',
         mode='min',
