@@ -45,7 +45,7 @@ def run(args):
             num_layers=args.num_hidden_layers,
             cat_dict=cat_dict,
             col_dict=col_dict,
-            tex_dict=tex_dict,
+            fab_dict=fab_dict,
             trend_len=args.trend_len, 
             num_trends= args.num_trends,
             decoder_input_type=args.decoder_input_type,
