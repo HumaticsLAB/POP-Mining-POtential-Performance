@@ -59,10 +59,10 @@ def run(args):
     # Define model saving procedure
     dt_string = datetime.now().strftime("%d-%m-%Y-%H-%M-%S")
 
-    model_savename = args.model_type + '_' + args.wandb_run
+    model_savename = ì'GTM_' + args.wandb_run
 
     checkpoint_callback = pl.callbacks.ModelCheckpoint(
-        dirpath=args.log_dir + '/'+args.model_type,
+        dirpath=args.ckpt_dir + '/'+args.model_type,
         filename=model_savename+'---{epoch}---'+dt_string,
         monitor='val_mae',
         mode='min',
@@ -95,6 +95,7 @@ if __name__ == '__main__':
     parser.add_argument('--pop_path', type=str, default='signals/pop.pt')
                             
     parser.add_argument('--log_dir', type=str, default='log')
+    parser.add_argument('--ckpt_dir', type=str, default='ckpt')
     parser.add_argument('--seed', type=int, default=21)
     parser.add_argument('--epochs', type=int, default=200)
     parser.add_argument('--gpu_num', type=int, default=0)
