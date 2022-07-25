@@ -30,7 +30,7 @@ def run(args):
     pop_signal = torch.load(args.pop_path)
 
     train_loader = POPDataset(test_df, pop_signal, cat_dict, col_dict, \
-            tex_dict).get_loader(batch_size=1, train=False)
+            fab_dict).get_loader(batch_size=1, train=False)
 
     test_loader = POPDataset(test_df, pop_signal, cat_dict, col_dict, \
             fab_dict).get_loader(batch_size=1, train=False)
