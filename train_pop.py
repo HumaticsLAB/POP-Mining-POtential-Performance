@@ -115,7 +115,7 @@ if __name__ == '__main__':
     parser.add_argument('--num_hidden_layers', type=int, default=1)
 
     # wandb arguments
-    parser.add_argument('--wandb_entity', type=str, default='username-here')
+    parser.add_argument('--wandb_entity', type=str, default='<username-here>')
     parser.add_argument('--wandb_proj', type=str, default='GTM_POP')
     parser.add_argument('--wandb_run', type=str, default='Run1')
 
