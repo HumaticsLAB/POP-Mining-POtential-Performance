@@ -44,8 +44,8 @@ def run(args):
 
     pop_signal = torch.load(args.pop_path)
 
-    test_loader = POPDataset(test_df, pop_signal, cat_dict, col_dict, \
-            tex_dict).get_loader(batch_size=1, train=False)
+    test_loader = POPDataset(test_df, args.img_root, pop_signal, cat_dict, col_dict, \
+            fab_dict, args.trend_len).get_loader(batch_size=1, train=False)
 
 
     model_savename = f'{args.wandb_run}_{args.output_dim}'
@@ -59,7 +59,7 @@ def run(args):
             num_layers=args.num_hidden_layers,
             cat_dict=cat_dict,
             col_dict=col_dict,
-            tex_dict=tex_dict,
+            fab_dict=fab_dict,
             trend_len=args.trend_len, 
             num_trends= args.num_trends,
             decoder_input_type=args.decoder_input_type,
@@ -102,6 +102,7 @@ if __name__ == '__main__':
 
     # General arguments
     parser.add_argument('--data_folder', type=str, default='dataset/')
+    parser.add_argument('--img_root', type=str, default='dataset/images/')
     parser.add_argument('--pop_path', type=str, default='signals/pop.pt')
     
     parser.add_argument('--ckpt_path', type=str, default='ckpt/path-to-model.ckpt')
