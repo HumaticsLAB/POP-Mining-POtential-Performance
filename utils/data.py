@@ -53,17 +53,17 @@ class POPDataset():
 
         # Create tensors for each part of the input/output
         item_sales, temporal_features = torch.FloatTensor(data.iloc[:, :12].values), torch.FloatTensor(
-            data.iloc[:, 14:18].values)
+            data.iloc[:, 13:17].values)
         categories, colors, fabrics = [self.cat_dict[val] for val in data.iloc[:].category], \
                                        [self.col_dict[val] for val in data.iloc[:].color], \
                                        [self.fab_dict[val] for val in data.iloc[:].fabric]
 
         
-        categories, colors, textures = torch.LongTensor(categories), torch.LongTensor(colors), torch.LongTensor(textures)
+        categories, colors, fabrics = torch.LongTensor(categories), torch.LongTensor(colors), torch.LongTensor(fabrics)
         pop_signals = torch.FloatTensor(pop_signals)
         images = torch.stack(image_features)
 
-        return TensorDataset(item_sales, torch.vstack([categories, textures, colors ]).T, temporal_features, pop_signals, images)
+        return TensorDataset(item_sales, torch.vstack([categories, fabrics, colors ]).T, temporal_features, pop_signals, images)
 
     def get_loader(self, batch_size, train=True):
         print('Starting dataset creation process...')
