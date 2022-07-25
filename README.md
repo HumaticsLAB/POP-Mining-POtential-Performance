@@ -43,10 +43,6 @@ unset INSTALL_DIR
 
 **POP** signals are publicly available in signals folder. 
 
-## Dataset
-
-**VISUELLE** dataset is publicly available to download [here](https://forms.gle/cVGQAmxhHf7eRJ937). Please download and extract it inside the dataset folder.
-
 ## Training
 To train the model of GTM-Transformer with POP signals please use the following scripts. Please check the arguments inside the script before launch.
 
