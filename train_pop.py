@@ -29,10 +29,10 @@ def run(args):
 
     pop_signal = torch.load(args.pop_path)
 
-    train_loader = POPDataset(test_df, pop_signal, cat_dict, col_dict, \
+    train_loader = POPDataset(test_df, args.img_root, pop_signal, cat_dict, col_dict, \
             fab_dict).get_loader(batch_size=1, train=False)
 
-    test_loader = POPDataset(test_df, pop_signal, cat_dict, col_dict, \
+    test_loader = POPDataset(test_df, args.img_root, pop_signal, cat_dict, col_dict, \
             fab_dict).get_loader(batch_size=1, train=False)
     
     
@@ -91,6 +91,7 @@ if __name__ == '__main__':
 
     # General arguments
     parser.add_argument('--data_folder', type=str, default='dataset/')
+    parser.add_argument('--img_root', type=str, default='dataset/images/')
     parser.add_argument('--pop_path', type=str, default='signals/pop.pt')
                             
     parser.add_argument('--log_dir', type=str, default='log')
