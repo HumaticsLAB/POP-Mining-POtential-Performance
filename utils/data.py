@@ -36,7 +36,7 @@ class POPDataset():
             start_date, img_path =  row['release_date'], row['image_path']
 
             pop_signal_start = start_date - pd.DateOffset(weeks=52)
-            pop_signal = self.pop_signal[row['external_code']][-52:].values[:self.trend_len].unsqueeze(0)
+            pop_signal = self.pop_signal[row['external_code']][-52:][:self.trend_len].unsqueeze(0)
 
             # Read images
             img = Image.open(os.path.join(self.img_root, img_path)).convert('RGB')
