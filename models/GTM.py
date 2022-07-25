@@ -232,7 +232,7 @@ class TransformerDecoderLayer(nn.Module):
         
 class GTM(pl.LightningModule):
     def __init__(self, embedding_dim, hidden_dim, output_dim, num_heads, num_layers, 
-                cat_dict, col_dict, tex_dict, trend_len, num_trends, decoder_input_type, use_encoder_mask=1, autoregressive=False, gpu_num=2):
+                cat_dict, col_dict, fab_dict, trend_len, num_trends, decoder_input_type, use_encoder_mask=1, autoregressive=False, gpu_num=2):
         super().__init__()
         self.hidden_dim = hidden_dim
         self.embedding_dim = embedding_dim
@@ -247,7 +247,7 @@ class GTM(pl.LightningModule):
          # Encoder
         self.dummy_encoder = DummyEmbedder(embedding_dim)
         self.image_encoder = ImageEmbedder()
-        self.text_encoder = TextEmbedder(embedding_dim, [cat_dict, tex_dict, col_dict], gpu_num)
+        self.text_encoder = TextEmbedder(embedding_dim, [cat_dict, fab_dict, col_dict], gpu_num)
         self.POP_encoder = POPEmbedder(output_dim, hidden_dim, use_encoder_mask, trend_len, num_trends, gpu_num)
         self.static_feature_encoder = FusionNetwork(embedding_dim, hidden_dim, decoder_input_type)
 
