@@ -1,6 +1,8 @@
 
 # POP: Mining POtential Performance of new fashion products via webly cross-modal query expansion
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/pop-mining-potential-performance-of-new/new-product-sales-forecasting-on-visuelle)](https://paperswithcode.com/sota/new-product-sales-forecasting-on-visuelle?p=pop-mining-potential-performance-of-new)
+
 The official pytorch implementation of [POP: Mining POtential Performance of new fashion products via webly cross-modal query expansion](https://arxiv.org/abs/2207.11001) paper. In this repository you find the **POP** signals and the [GTM](https://github.com/HumaticsLAB/GTM-Transformer) architecture to use them.
 
 Accepted as poster at the European Conference on Computer Vision @ ECCV2022 @ Tel-Aviv
