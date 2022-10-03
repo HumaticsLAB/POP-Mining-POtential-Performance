@@ -56,13 +56,13 @@ python forecast_POP.py --data_folder dataset --ckpt_path ckpt/model.pth
 
 ## Citation
 
-If you use **POP** signals or this paper implementation, please cite the following papers.
+If you use **POP** signals or this paper implementation, please cite the following paper.
 
 ```
 Coming Soon
 ```
 
-If you use **VISUELLE** dataset or **GTM** implementation, please cite the following papers.
+If you use **VISUELLE** dataset or **GTM** implementation, please cite the following paper.
 
 
 ```
