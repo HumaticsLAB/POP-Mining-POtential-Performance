@@ -59,7 +59,16 @@ python forecast_POP.py --data_folder dataset --ckpt_path ckpt/model.pth
 If you use **POP** signals or this paper implementation, please cite the following paper.
 
 ```
-Coming Soon
+@InProceedings{joppi2022,
+author="Joppi, Christian and Skenderi, Geri and Cristani, Marco",
+editor="Avidan, Shai and Brostow, Gabriel and Ciss{\'e}, Moustapha and Farinella, Giovanni Maria and Hassner, Tal",
+title="POP: Mining POtential Performance of New Fashion Products via Webly Cross-modal Query Expansion",
+booktitle="Computer Vision -- ECCV 2022",
+year="2022",
+publisher="Springer Nature Switzerland",
+pages="34--50",
+isbn="978-3-031-19839-7"
+}
 ```
 
 If you use **VISUELLE** dataset or **GTM** implementation, please cite the following paper.
