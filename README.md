@@ -17,7 +17,7 @@ python3 -m venv pop_venv
 source pop_venv/bin/activate
 # pop_venv\Scripts\activate.bat # If you're running on Windows
 
-pip install numpy pandas matplotlib opencv-python permetrics Pillow scikit-image scikit-learn scipy tqdm transformers fairseq wandb
+pip install numpy pandas matplotlib opencv-python permetrics Pillow scikit-image scikit-learn scipy tqdm transformers==4.9.1 fairseq wandb
 
 pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html
 
