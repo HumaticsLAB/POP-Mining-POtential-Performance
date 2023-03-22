@@ -3,9 +3,9 @@
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/pop-mining-potential-performance-of-new/new-product-sales-forecasting-on-visuelle)](https://paperswithcode.com/sota/new-product-sales-forecasting-on-visuelle?p=pop-mining-potential-performance-of-new)
 
-The official pytorch implementation of [POP: Mining POtential Performance of new fashion products via webly cross-modal query expansion](https://arxiv.org/abs/2207.11001) paper. In this repository you find the **POP** signals and the [GTM](https://github.com/HumaticsLAB/GTM-Transformer) architecture to use them.
+The official pytorch implementation of [POP: Mining POtential Performance of new fashion products via webly cross-modal query expansion](https://arxiv.org/abs/2207.11001) paper. In this repository you find the **POP** signals and the [GTM](https://github.com/HumaticsLAB/GTM-Transformer) architecture used for forecasting with them.
 
-Accepted as poster at the European Conference on Computer Vision @ ECCV2022 @ Tel-Aviv
+Accepted as poster at the European Conference on Computer Vision (ECCV2022) in Tel-Aviv
 
 ## Installation
 
@@ -37,18 +37,18 @@ unset INSTALL_DIR
 
 ## Dataset
 
-**VISUELLE** dataset is publicly available to download [here](https://forms.gle/cVGQAmxhHf7eRJ937). Please download and extract it inside the root folder. A more accurate description of the dataset inside its [official page](https://humaticslab.github.io/forecasting/visuelle).  
+The **VISUELLE** dataset is publicly available to download [here](https://forms.gle/cVGQAmxhHf7eRJ937). Please download and extract it inside the root folder. A more accurate description of the dataset is available [in the official page](https://humaticslab.github.io/forecasting/visuelle).  
 
 **POP** signals are publicly available in signals folder. 
 
 ## Training
-To train the model of GTM-Transformer with POP signals please use the following scripts. Please check the arguments inside the script before launch.
+To train the GTM-Transformer model with POP please use the following script. Please check the arguments inside the script before launch.
 
 ```bash
 python train_POP.py --data_folder dataset
 ```
 ## Inference
-To evaluate the model of GTM-Transformer with POP signals please use the following script. Please check the arguments inside the script before launch.
+To evaluate the GTM-Transformer model with POP use the following script. Please check the arguments inside the script before launch.
 
 ```bash
 python forecast_POP.py --data_folder dataset --ckpt_path ckpt/model.pth
@@ -56,7 +56,7 @@ python forecast_POP.py --data_folder dataset --ckpt_path ckpt/model.pth
 
 ## Citation
 
-If you use **POP** signals or this paper implementation, please cite the following paper.
+If you use the **POP** pipeline, please cite the following paper.
 
 ```
 @InProceedings{joppi2022,
@@ -71,7 +71,7 @@ If you use **POP** signals or this paper implementation, please cite the followi
 }
 ```
 
-If you use **VISUELLE** dataset or **GTM** implementation, please cite the following paper.
+If you use the **VISUELLE** dataset or the **GTM** implementation, please cite the following paper.
 
 
 ```
